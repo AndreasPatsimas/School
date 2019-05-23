@@ -10,7 +10,7 @@ import org.apache.velocity.context.Context;
 import org.apache.velocity.tools.view.VelocityViewServlet;
 import org.patsimas.school.model.entity.User;
 
-@WebServlet("/help")
+//@WebServlet("/exp") --> web.xml
 public class HelpServlet extends VelocityViewServlet {
 
 	@Override
@@ -21,6 +21,8 @@ public class HelpServlet extends VelocityViewServlet {
 		User user = (User) session.getAttribute("user");
 		
 		System.out.println(user);
+		
+		ctx.put("user", user);
 		
 		return getTemplate("exp.html");
 	}
