@@ -2,7 +2,7 @@
 <body>
 <h2>Hello School!</h2>
 
-<a href = "users">users</a>
+<a href = "templates/login.html">Get Started</a>
 
 </body>
 </html>

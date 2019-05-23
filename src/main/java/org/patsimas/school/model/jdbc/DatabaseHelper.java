@@ -59,6 +59,8 @@ public class DatabaseHelper {
 	        }        
 	    }
 	    
+
+	    
 	    static List<User> fetchUsers(String query) throws Exception  {
 	        try     
 	        {    
@@ -72,15 +74,7 @@ public class DatabaseHelper {
 	    }
 
            
-	    private static User fetchUserOrNull(PreparedStatement ps) throws SQLException {
-	        ResultSet rs = ps.executeQuery();
-	        if (rs.next()) {
-	            return createUser(rs);
-	        }
-	        else {
-	            return null;
-	        }
-	    }
+
 	    
 	    private static List<User> fetchUsers(PreparedStatement ps) throws SQLException {
 	        List<User> users = new ArrayList();
@@ -99,6 +93,16 @@ public class DatabaseHelper {
 	        user.setPassword(rs.getString("password"));
 	        
 	        return user;
+	    }
+	    
+	    private static User fetchUserOrNull(PreparedStatement ps) throws SQLException {
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            return createUser(rs);
+	        }
+	        else {
+	            return null;
+	        }
 	    }
 	    
 

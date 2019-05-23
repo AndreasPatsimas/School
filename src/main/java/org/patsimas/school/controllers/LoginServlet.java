@@ -1,10 +1,9 @@
 package org.patsimas.school.controllers;
 
-import java.util.List;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.context.Context;
@@ -13,26 +12,34 @@ import org.patsimas.school.model.dao.UserDAO;
 import org.patsimas.school.model.entity.User;
 import org.patsimas.school.model.jdbc.UserDAOImpl;
 
-
-@WebServlet("/users")
-public class UserServlet extends VelocityViewServlet {
+@WebServlet("/authenticate")
+public class LoginServlet extends VelocityViewServlet {
 
 	@Override
 	protected Template handleRequest(HttpServletRequest request, HttpServletResponse response, Context ctx) {
 		
 		UserDAO ud = new UserDAOImpl();
 		
-		List<User> userList = null;
+		String username = request.getParameter("username");
+		
+		String password = request.getParameter("password");
+		
+		HttpSession session = request.getSession();
 		
 		try {
-			userList = ud.getAllUsers();
-		} catch (Exception e) {
-			e.printStackTrace();
+			User user = ud.getUser(username, password);
+			
+			session.setAttribute("user", user);
+			
+			ctx.put("user", user);
+			
+			return getTemplate("home.html");
+		}
+		catch(Exception ex) {
+			
+			return getTemplate("invalidlogin.html");
 		}
 		
-		ctx.put("users", userList);
-		
-		return getTemplate("users.html");
 	}
 
 	
