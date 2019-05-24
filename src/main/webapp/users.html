@@ -9,7 +9,7 @@
 	<h1>F. Life</h1>
 	<ul>
 	#foreach($user in $users)
-	<li>$user.username</li>
+	<li>$user.user.username  $user.role.name</li>
 	#end
 </ul>
 </body>
