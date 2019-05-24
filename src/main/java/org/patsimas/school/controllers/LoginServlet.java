@@ -39,8 +39,6 @@ public class LoginServlet extends VelocityViewServlet {
 			
 			UserRole userRole = urd.getRoleUserById(user.getId(), user);
 			
-			session.setAttribute("user", user);
-			
 			ctx.put("user", user);
 			
 			if(userRole.getRole().getRid() == 1) {
@@ -52,12 +50,16 @@ public class LoginServlet extends VelocityViewServlet {
 					userRoleList.add(roleUser);
 				}
 				ctx.put("users", userRoleList);
+				session.setAttribute("director", user);
 				return getTemplate("users.html");
 			}
 			else if(userRole.getRole().getRid() == 2) {
-				return getTemplate("home.html");
+				session.setAttribute("professor", user);
+				ctx.put("prof", user);
+				return getTemplate("profhome.html");
 			}
 			else {
+				session.setAttribute("user", user);
 				return getTemplate("home.html");
 			}
 		}
