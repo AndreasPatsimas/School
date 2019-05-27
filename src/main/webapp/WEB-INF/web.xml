@@ -15,4 +15,24 @@
 		<url-pattern>/exp</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>logout</servlet-name>
+		<servlet-class>org.patsimas.school.controllers.LogoutServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>api_users</servlet-name>
+		<servlet-class>org.patsimas.school.api.UserListAPI</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>api_users</servlet-name>
+		<url-pattern>/api/users</url-pattern>
+	</servlet-mapping>
+
 </web-app>

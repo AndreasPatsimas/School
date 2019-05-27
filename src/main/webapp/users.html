@@ -8,9 +8,11 @@
 <body>
 	<h1>F. Life</h1>
 	<ul>
-	#foreach($user in $users)
-	<li>$user.user.username  $user.role.name</li>
-	#end
-</ul>
+		#foreach($user in $users)
+		<li>$user.user.username $user.role.name</li> #end
+	</ul>
+
+	<br>
+	<button onclick="window.location.href = 'logout'">Logout</button>
 </body>
 </html>
